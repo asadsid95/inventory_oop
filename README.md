@@ -14,7 +14,17 @@ It would be connected to PoS, allowing purchasing of goods
 - Setting data types for each attri. to ensure incorrect data types are passed
 - Adding additional attri. into an object
 - Putting validations for object attri's values (statement keyword assert)
+
 2. Class attributes are defined in class-level (outside of `__init__`)
 - Also notice the lack of `self.`
-- When mentioned with an object, program will first search object's attribute and if not found, it will then check class-level for it
-3. Magic method `__dict__`  zA  
+- When mentioned with an object, program will first search object's attributes for it and if not found, it will then check class-level
+- **Use case**: attributes that remain same for all objects (refund policy)
+
+3. Magic method `__repr__`, `__add__`   
+- Need to find a use for using these (less priority)
+- **Use case** : __contains__ to check if element in object's container (list, tuples)
+
+4. Class method (takes the class itself as first arg and can call class attri)
+- Need to find a use for using these
+- **Use case**: 
+- - Factory methods to return object

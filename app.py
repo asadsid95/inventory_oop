@@ -10,16 +10,35 @@ class Item:
         self.name = name
         self.price = price
         self.quantity = quantity
-        
+
+    # update to inventory from delivery       
+    @classmethod
+    def from_delivery(cls,name,price,quantity):
+        return cls(name,price,quantity)
+
+    # alt const. for item from online orders       
+    @classmethod
+    def from_online_order(cls):
+        # via json, list
+        return cls()
+        pass
+    
+    @staticmethod
+    def branch(location):
+        pass
+
+    def add_to_inventory(self):
+        pass
 
     def total_value(self):
         message = f"Inventory value for {self.name}: {self.price * self.quantity}"
         return message
 
     def reminder_refund(self):
-        message = f"Remind customer: {self.name}'s refund policy is {self.refund_duration} day"
+        message = f"Remind customer: {self.name}'s refund policy is {self.refund_duration} days!"
         return message
 
+    # readable rep of object
     def __repr__(self):
         return f"Item('{self.name}',{self.price},{self.quantity})"
     

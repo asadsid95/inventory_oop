@@ -6,8 +6,11 @@ Create a program that allows user to track inventory details about various produ
 - details include: item type, price, quantity and total value
 
 It would be connected to PoS, allowing purchasing of goods
+- display reminders for client
+- show total value of items
+- addition/subtraction of quantities
 
-------
+0------
 #### Notes:
 1. Constructors are used to create objects w/ fixed # of attributes (attri.). These are called Object attributes
 - Setting their default values
@@ -24,7 +27,11 @@ It would be connected to PoS, allowing purchasing of goods
 - Need to find a use for using these (less priority)
 - **Use case** : __contains__ to check if element in object's container (list, tuples)
 
-4. Class method (takes the class itself as first arg and can call class attri)
+4. Class method (takes the class itself as first arg & can call class attri)
 - Need to find a use for using these
 - **Use case**: 
-- - Factory methods to return object
+- - creates factory methods () return object
+- - alt. constructors
+
+5. Static method (takes neither)
+- creating utility methods

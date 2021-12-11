@@ -25,13 +25,12 @@ It would be connected to PoS, allowing purchasing of goods
 
 3. Magic method `__repr__`, `__add__`   
 - Need to find a use for using these (less priority)
-- **Use case** : __contains__ to check if element in object's container (list, tuples)
+- **Use case** : used to customize objects to behave like built-in types 
+- - Adding 2 class objects (non-built) would normally result in error as program doesn't know how to but defining function inside `__add__` could give that ability    
+- __contains__ to check if element in object's container (list, tuples)
 
-4. Class method (takes the class itself as first arg & can call class attri)
-- Need to find a use for using these
-- **Use case**: 
-- - creates factory methods () return object
-- - alt. constructors
+4. Class method (takes the class itself as first arg & has access to class attri... therefore has access to class state)
+- **Use case**:- - used to create factory methods (i.o.w., it returns object / i.o.w., alt. constructor)
 
-5. Static method (takes neither)
-- creating utility methods
+5. Static method (doesn't have access to class or object state -- Remember state = attribute & behaviour = method )
+- Use to create utility methods

@@ -1,9 +1,10 @@
 import csv
+import datetime
 
 class Item:
 
     refund_duration = 20
-
+    all = []
     def __init__(self, name: str, price: float, quantity=0):
         
         assert price > 0, f"Provided price {price} is below $0"
@@ -13,27 +14,27 @@ class Item:
         self.price = price
         self.quantity = quantity
 
-    # alt const. for item from delivery       
     @classmethod
+    # alt const. for item from delivery       
+    # imagine items needs to be created from csv (delivery company happens to send invoice in csv)
     def from_delivery(cls):
-        # imagine items needs to be created from csv (delivery company happens to send invoice in csv)
 
         with open('invoice1.csv') as invoice:
             content_invoice_reader = csv.DictReader(invoice) # Better than using reader() b/c dict is better to use in this case than list
             content_invoice = list(content_invoice_reader)
         
         for line in content_invoice:
-            Item(  # this is same as creating items using Item(name, price, quantity)
+            item = Item(  # this is same as creating items using Item(name, price, quantity)
                 name = line.get('name'), 
                 price = float(line.get('price')), 
                 quantity = int(line.get('quantity')) 
             )
-        # return cls()
+            Item.all.append(item)
 
-    # alt const. for item from online orders       
     @classmethod
+    # alt const. for item from online orders       
+    # via json, list
     def from_online_order(cls):
-        # via json, list
         # return cls()
         pass
     
@@ -42,17 +43,13 @@ class Item:
     # def branch(location):
     #     pass
 
+    # change quantity by amount
     def add_inventory(self, amount):
-        # change quantity by amount
-
-        # print(self.quantity)
         self.quantity += amount
         return self.quantity
 
+    # change quantity by amount
     def subtract_inventory(self, amount):
-        # change quantity by amount
-
-        # print(self.quantity)
         self.quantity -= amount
         return self.quantity
 
@@ -84,8 +81,10 @@ mixed_aquatic = Item("Mixed Aquatics", 100)
 #####################
 # This could be place where methods are called to imitate a store
 
-# print(Item.from_delivery()) # adding items received from delivery
+print(Item.from_delivery()) # adding items received from delivery
+print(Item.all)
 # print(Item.from_online_order()) # adding items received from online order
 
-print(bonsai.add_inventory(4))
-print(bonsai.subtract_inventory(8))
+print(bonsai.add_inventory(4)) # Use case: on screen option as item being checked in  
+print(bonsai.subtract_inventory(8)) # Use case: on screen option as item being checked out 
+ 

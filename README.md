@@ -28,6 +28,7 @@ It would be connected to PoS, allowing purchasing of goods
 - **Use case** : used to customize objects to behave like built-in types 
 - - Adding 2 class objects (non-built) would normally result in error as program doesn't know how to but defining function inside `__add__` could give that ability    
 - __contains__ to check if element in object's container (list, tuples)
+- to get class's name while inheriting, using `__class___.__name__` inside `__repr`
 
 4. Class method (takes the class itself as first arg & has access to class attri... therefore has access to class state)
 - **Use case**:- - used to create factory methods (i.o.w., it returns object / i.o.w., alt. constructor)

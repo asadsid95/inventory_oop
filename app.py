@@ -1,3 +1,5 @@
+import csv
+
 class Item:
 
     refund_duration = 20
@@ -11,24 +13,48 @@ class Item:
         self.price = price
         self.quantity = quantity
 
-    # update to inventory from delivery       
+    # alt const. for item from delivery       
     @classmethod
-    def from_delivery(cls,name,price,quantity):
-        return cls(name,price,quantity)
+    def from_delivery(cls):
+        # imagine items needs to be created from csv (delivery company happens to send invoice in csv)
+
+        with open('invoice1.csv') as invoice:
+            content_invoice_reader = csv.DictReader(invoice) # Better than using reader() b/c dict is better to use in this case than list
+            content_invoice = list(content_invoice_reader)
+        
+        for line in content_invoice:
+            Item(  # this is same as creating items using Item(name, price, quantity)
+                name = line.get('name'), 
+                price = float(line.get('price')), 
+                quantity = int(line.get('quantity')) 
+            )
+        # return cls()
 
     # alt const. for item from online orders       
     @classmethod
     def from_online_order(cls):
         # via json, list
-        return cls()
+        # return cls()
         pass
     
-    @staticmethod
-    def branch(location):
-        pass
+    # think of a utility function that can benefit the class
+    # @staticmethod
+    # def branch(location):
+    #     pass
 
-    def add_to_inventory(self):
-        pass
+    def add_inventory(self, amount):
+        # change quantity by amount
+
+        # print(self.quantity)
+        self.quantity += amount
+        return self.quantity
+
+    def subtract_inventory(self, amount):
+        # change quantity by amount
+
+        # print(self.quantity)
+        self.quantity -= amount
+        return self.quantity
 
     def total_value(self):
         message = f"Inventory value for {self.name}: {self.price * self.quantity}"
@@ -52,11 +78,14 @@ bonsai = Item('Bonsai', 500, 10)
 tempertourist = Item("Tempertourist", 250, 10)
 mixed_aquatic = Item("Mixed Aquatics", 100)
 
-bonsai.refund_duration = 3
+# print(bonsai.__add__(tempertourist))
+# print(bonsai + tempertourist)
 
-# print(bonsai)
-# print(tempertourist)
-# print(mixed_aquatic)
+#####################
+# This could be place where methods are called to imitate a store
 
-print(bonsai.__add__(tempertourist))
+# print(Item.from_delivery()) # adding items received from delivery
+# print(Item.from_online_order()) # adding items received from online order
 
+print(bonsai.add_inventory(4))
+print(bonsai.subtract_inventory(8))

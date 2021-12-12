@@ -10,7 +10,11 @@ It would be connected to PoS, allowing purchasing of goods
 - show total value of items
 - addition/subtraction of quantities
 
-0------
+Next areas to focus on:
+- Since current flow of item happens on single-item basis, what if we could check out/in multiple items at once
+- Organization in an inventory is valueable. What if grouping items to imitate aisles-like structure
+- Adding more features to the inventory
+------
 #### Notes:
 1. Constructors are used to create objects w/ fixed # of attributes (attri.). These are called Object attributes
 - Setting their default values

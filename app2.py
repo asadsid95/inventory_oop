@@ -47,6 +47,10 @@ class Plant():
         self.quantity -= amount
         pass
 
+    def total_value(self):
+        total = self._price * self.quantity
+        return total
+
     def reminder_refund(self):
         return f"Reminder: Refund policy applies for {self.refund_policy} days!"
 
@@ -60,6 +64,8 @@ plant1 = Plant("Bonsai", 54.99, 7)
 plant2 = Plant("Cactii", 34.99, 8)
 plant3 = Plant("Bamboo", 24.99, 8)
 
-Plant.from_csv()
-print(Plant.all_objects)
+print(plant2.total_value())
+
+# Plant.from_csv()
+# print(Plant.all_objects)
 

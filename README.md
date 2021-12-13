@@ -35,13 +35,14 @@ Next areas to focus on:
 - to get class's name while inheriting, using `__class___.__name__` inside `__repr`
 
 4. _Class method_ (takes the class itself as first arg & has access to class attri... therefore has access to class state)
-- **Use case**:- - used to create factory methods (i.o.w., it returns object / i.o.w., alt. constructor)
+- **Use case**: used to create factory methods (i.o.w., it returns object / i.o.w., alt. constructor)
 
 5. _Static method_ (doesn't have access to class or object state -- Remember state = attribute & behaviour = method )
 - Use to create utility methods
 - also used during testing b/c independent methods (from class) can be inserted
 - also for other maintenance-related features 
 
-6. getters setters (@property & @attri.setter)
-- data encapsulation, to prevent direct access
-- way around not having private-hidden fields 
+6. _getters setters_ (@property & @attri.setter)
+- **Use case**: data encapsulation, to prevent direct access; way around not having private-hidden fields 
+- any code placed within getter/setter will execute prior to returning property's value
+- - think of putting conditional prior to setting property's value

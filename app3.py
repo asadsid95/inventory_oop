@@ -3,6 +3,10 @@
 
 import datetime
 import csv
+import sqlite3
+
+conn = sqlite3.connect("storefront.sql")
+cur = conn.cursor()
 
 class Plant:
     ''' 
@@ -21,9 +25,11 @@ class Plant:
         self.name = name
         self.price = price
         self.quantity =  quantity
-        self.order_time = order_time
+        self.__order_time = order_time
 
         self.all_instances.append(self)
+
+        # insert_code = f"INSERT INTO "
         
     @classmethod
     def from_db(self):
@@ -49,6 +55,10 @@ class Plant:
         return Plant.all_instances 
 
     @property
+    def order_time(self):
+        return self.__order_time   
+
+    @property
     def total_value(self):
         total_value = self.price * self.quantity
         return total_value
@@ -71,11 +81,12 @@ class Plant:
 order1 = Plant("Submerged", 10, 10)
 order2 = Plant("Dry Surrounds", 40, 8)
 
+print(order1.order_time)
+
 print(order1.add_inventory(3))
 print(order1.total_value)
-print(order1.from_csv())
+# print(order1.from_csv())
 # print(order1.all_instances)
-
 
 # print(order1.__class__.__name__)
 # print(order2.from_csv())

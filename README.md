@@ -46,3 +46,5 @@ Next areas to focus on:
 - **Use case**: data encapsulation, to prevent direct access; way around not having private-hidden fields 
 - any code placed within getter/setter will execute prior to returning property's value
 - - think of putting conditional prior to setting property's value
+
+7. Context management protocol: __enter__ & __exit__

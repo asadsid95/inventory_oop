@@ -1,5 +1,9 @@
 import datetime
 import csv
+import sqlite3
+
+conn = sqlite3.connect("storefront.db")
+cur = conn.cursor()
 
 class Item:
     '''
@@ -19,7 +23,8 @@ class Item:
         self.quantity = quantity
         self.__order_date = order_date
 
-        self.all_instances.append(self)
+        cur.execute(f"INSERT INTO inventory (name, price, quantity, order_date) VALUES (?, ?, ?, ?)", [self.name,self.price,self.quantity,self.__order_date] )
+        conn.commit()
 
     @property
     def order_date(self):

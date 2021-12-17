@@ -17,21 +17,23 @@ class StoreItem:
 class Order:
 
     refund_dur = 7
-    def __init__(self, name, price, quantity):
+    def __init__(self, name:str, price: int, quantity: int):
         self.name = name,
         self.price = price,
-        self.quantity = quantity
+        self.quantity = int(quantity)
     
     def __repr__(self):
         return f"Order('{self.name}', {self.price}, {self.quantity}"
 
     def add_invt(self, amount):
         self.quantity += amount
+        return f"Inventory increased to {self.quantity}"
         
     def minus_invt(self, amount):
         if self.quantity < 0:
             return "Check balance for sufficient funds"
         self.quantity -= amount
+        return f"Inventory decreased to {self.quantity}"
 
     def reminder_refund(self):
         return f"refund policy is {Order.refund_dur}"
@@ -48,7 +50,7 @@ class Store:
 
     def create(self):
         # new Order added to dict{}
-        
+        print()
         order = input("Item name: ")
         price = input("Price: ")
         quantity = input("Quantity: ")
@@ -58,20 +60,28 @@ class Store:
 
     def add(self):
 
-        # input order number (key name) to get object from dict{}
+        # input order number (key) to get Order object from dict{}
         order_number = input("Order number: ")
         order_number=int(order_number)
         add = input("How many would you like to order? ")
         add = int(add)
+
         order = self.orderDict[order_number]
-        print(order.quantity)
-        # order.add_invt(add)
-        # print(order.quantity)
+        changed_order = order.add_invt(add)
+        print(changed_order)
 
         pass
 
     def minus(self):
-        pass
+        # input order number (key) to get Order object from dict{}
+        order_number = input("Order number: ")
+        order_number=int(order_number)
+        minus = input("How many would you like to order? ")
+        minus = int(minus)
+
+        order = self.orderDict[order_number]
+        changed_order = order.minus_invt(minus)
+        print(changed_order)
 
     def delete(self):
         pass
@@ -83,4 +93,5 @@ order1.create()
 # print(order1.orderDict)
 
 order1.add()
-print(order1.orderDict)
+order1.minus()
+# print(order1.orderDict)

@@ -1,5 +1,5 @@
 class StoreItem:
-    
+    pass
     '''
     
     building the class in order of:
@@ -14,7 +14,6 @@ class StoreItem:
 
     '''
 
-
 class Order:
 
     refund_dur = 7
@@ -23,6 +22,9 @@ class Order:
         self.price = price,
         self.quantity = quantity
     
+    def __repr__(self):
+        return f"Order('{self.name}', {self.price}, {self.quantity}"
+
     def add_invt(self, amount):
         self.quantity += amount
         
@@ -35,22 +37,37 @@ class Order:
         return f"refund policy is {Order.refund_dur}"
 
 class Store:
+    # Each object represents a store's inventory order's ledger 
+
     # able to create, store, find and change, and delete each order 
     # # lists can be used but what if client needs to delete from mid-list? It means all elements to-right have to be shifted
+    
     def __init__(self):
         self.orderDict = {}
+        self.dictCounter = 0
 
     def create(self):
-        # new Order
+        # new Order added to dict{}
         
         order = input("Item name: ")
         price = input("Price: ")
         quantity = input("Quantity: ")
         self.orderCreated = Order(order, price, quantity) # POI
-        self.orderDict['some counter'] = self.orderCreated
+        self.orderDict[self.dictCounter] = self.orderCreated
+        self.dictCounter += 1 
 
     def add(self):
-        # input order number (key name
+
+        # input order number (key name) to get object from dict{}
+        order_number = input("Order number: ")
+        order_number=int(order_number)
+        add = input("How many would you like to order? ")
+        add = int(add)
+        order = self.orderDict[order_number]
+        print(order.quantity)
+        # order.add_invt(add)
+        # print(order.quantity)
+
         pass
 
     def minus(self):
@@ -61,5 +78,9 @@ class Store:
 
 ## Main code below
 order1 = Store()
+
 order1.create()
+# print(order1.orderDict)
+
+order1.add()
 print(order1.orderDict)

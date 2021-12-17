@@ -50,7 +50,7 @@ class Store:
 
     def create(self):
         # new Order added to dict{}
-        print()
+        print("To add item in Store's inventory, do the following:")
         order = input("Item name: ")
         price = input("Price: ")
         quantity = input("Quantity: ")

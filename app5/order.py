@@ -1,13 +1,13 @@
 class Order:
 
     refund_dur = 7
-    def __init__(self, name:str, price: int, quantity: int):
-        self.name = name,
-        self.price = price,
-        self.quantity = int(quantity)
+    def __init__(self, name, price, quantity):
+        self.name = name
+        self.price = price
+        self.quantity = quantity
     
     def __repr__(self):
-        return f"Order('{self.name}', {self.price}, {self.quantity}"
+        return f"Order('{self.name[0]}', {self.price}, {self.quantity})"
 
     def add_invt(self, amount):
         self.quantity += amount

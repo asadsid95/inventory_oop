@@ -13,37 +13,39 @@ class Store:
     def create(self):
         # new Order added to dict{}
         print("To add item in Store's inventory, do the following:")
-        order = input("Item name: ")
-        price = input("Price: ")
+        order = str(input("Item name: "))
+        price = float(input("Price: "))
         quantity = input("Quantity: ")
         self.orderCreated = Order(order, price, quantity) # POI
         self.orderDict[self.dictCounter] = self.orderCreated
         self.dictCounter += 1 
 
     def add(self):
-
         # input order number (key) to get Order object from dict{}
-        order_number = input("Order number: ")
+        print(self.orderDict)
+        order_number = input("Order number to add inventory to: ")
         order_number=int(order_number)
-        add = input("How many would you like to order? ")
+        if order_number > self.dictCounter:
+            return print(f"Order number {order_number} doesn't exist")
+        add = input("How many would you like to add? ")
         add = int(add)
 
-        order = self.orderDict[order_number]
-        changed_order = order.add_invt(add)
-        print(changed_order)
-
-        pass
+        order = self.orderDict[order_number].add_invt(add)
 
     def minus(self):
         # input order number (key) to get Order object from dict{}
-        order_number = input("Order number: ")
+        print(self.orderDict)        
+        order_number = input("Order number to minus inventory from: ")
+        if order_number not in self.orderDict:
+            return print(f"Order number {order_number} doesn't exist")
         order_number=int(order_number)
-        minus = input("How many would you like to order? ")
+        minus = input("How many would you like to take? ")
         minus = int(minus)
 
-        order = self.orderDict[order_number]
-        changed_order = order.minus_invt(minus)
-        print(changed_order)
+        order = self.orderDict[order_number].minus_invt(minus)
 
     def delete(self):
-        pass
+        order_number = input("Order number to remove: ")
+        order_number = int(order_number)
+
+        del self.orderDict[order_number]

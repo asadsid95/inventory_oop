@@ -11,6 +11,8 @@ class Account:
         self.accTransactionsDict = {} # add transaction history in account
         self.counter = 0
 
+    def __repr__(self):
+        return f'Account({self.name},{self.amount})'
 
     def add_money(self, amount):
         assert amount > 0, 'need Amount > 0'

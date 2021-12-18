@@ -16,20 +16,20 @@ class Bank:
         # create account w/ user input
         name = input('Name of account holder: ')
         iAmount = input('Amount to open account with: ')
-        pin = input('PIN: ')
-
-        self.accountLedger[self.counter] = Account(name, iAmount, pin)
-        self.counter += 1
-
-    
+        pin = int(input('PIN: '))
 
         # store in accountLedger
-
-
-        pass
+        self.accountsLedger[self.counter] = Account(name, iAmount, pin)
+        self.counter += 1
 
     def deposit(self):
-        pass
+        print(self.accountsLedger)
+        account_number = int(input('Account number: '))
+        account = self.accountsLedger[account_number]
+
+        amount = int(input('Amount to deposit: '))  
+        return account.add_money(amount)
+
 
     def withdraw(self):
         pass

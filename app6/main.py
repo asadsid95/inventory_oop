@@ -13,7 +13,8 @@ from bank import Bank
 
 def main():
     bank1 = Bank()
-    # print(bank1.deposit())
+    print(bank1.create())
+    print(bank1.deposit())
 
 if __name__=='__main__':
     main()

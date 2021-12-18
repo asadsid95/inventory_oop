@@ -8,10 +8,13 @@ class Account:
         self.name = name
         self.amount = int(amount)
         self.pin = int(pin)
-        self.accTransactionDict = {} # add transaction history in account
-    
+        self.accTransactionsDict = {} # add transaction history in account
+        self.counter = 0
+
+
     def add_money(self, amount):
         assert amount > 0, 'need Amount > 0'
+
         self.amount += amount
         return self.amount
 
@@ -23,6 +26,9 @@ class Account:
             return self.amount
         else:
             return 'No sufficient funds'
+
+    def transaction_history(self):
+        pass
 
 
 # print(Account('Asad', 100, 111).add_money(100))

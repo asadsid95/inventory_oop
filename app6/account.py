@@ -18,6 +18,8 @@ class Account:
         assert amount > 0, 'need Amount > 0'
 
         self.amount += amount
+        self.add_to_transactionHistory()
+        print("Account history: ", self.accTransactionsDict)
         return self.amount
 
     def minus_money(self, amount):
@@ -25,13 +27,16 @@ class Account:
         
         if self.amount > 0:
             self.amount -= amount
+            self.add_to_transactionHistory()
             return self.amount
         else:
             return 'No sufficient funds'
 
-    def transaction_history(self):
-        pass
+    def add_to_transactionHistory(self):
+        # saving each transaction's record by saving each with unique number
+        # remember I can call a method inside another method
+        self.accTransactionsDict[self.counter] = self
+        self.counter += 1
+        # how to save transaction with the action (add/minus) & show the amount changed by
 
-
-# print(Account('Asad', 100, 111).add_money(100))
-# print(Account('Asad', 100, 1111).minus_money(50))
+        return f"Transactions history: {self.accTransactionsDict}"

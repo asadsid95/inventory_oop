@@ -9,8 +9,9 @@ class Bank:
     '''
     def __init__(self) -> None:
         self.accountsLedger = {}
-        self.counter = 0
-        self.transactionsLedger = {} # not sure how to add this
+        self.accCounter = 0
+        self.bankLedger = {} # not sure how to add this
+        self.ledgerCounter = 0
 
     def create(self):
         # create account w/ user input
@@ -19,23 +20,31 @@ class Bank:
         pin = int(input('PIN: '))
 
         # store in accountLedger
-        self.accountsLedger[self.counter] = Account(name, iAmount, pin)
-        self.counter += 1
+        self.accountsLedger[self.accCounter] = Account(name, iAmount, pin)
+        self.accCounter += 1
 
     def deposit(self):
-        print(self.accountsLedger)
-        account_number = int(input('Account number: '))
+        account_number = int(input(f'Pick an account number from {list(self.accountsLedger.keys())}: '))
         account = self.accountsLedger[account_number]
 
         amount = int(input('Amount to deposit: '))  
         return account.add_money(amount)
 
-
     def withdraw(self):
-        pass
+        account_number = int(input(f'Pick an account number from {list(self.accountsLedger.keys())}: '))
+        account = self.accountsLedger[account_number]
+
+        amount = int(input('Amount to withdraw: '))  
+        return account.minus_money(amount)
 
     def close(self):
-        pass
+        acc_to_close = int(input(f"Pick an account number to close, from {list(self.accountsLedger.keys())}: "))
+        del self.accountsLedger[acc_to_close]
+
+        return self.accountsLedger
 
     def add_to_ledger(self):
-        pass
+        self.bankLedger[self.ledgerCounter] = self
+        self.ledgerCounter += 1
+
+        return f"Bank's ledger history: {self.bankLedger}"

@@ -8,6 +8,9 @@ class Bank:
         - keep track of all transactions
     '''
     def __init__(self) -> None:
+
+        inital_reserve = 100000
+
         self.accountsLedger = {}
         self.accCounter = 0
         self.bankLedger = {} # not sure how to add this
@@ -24,22 +27,22 @@ class Bank:
         self.accCounter += 1
 
     def deposit(self):
-        account_number = int(input(f'Pick an account number from {list(self.accountsLedger.keys())}: '))
+        account_number = int(input(f'Pick an account number to deposit into: {list(self.accountsLedger.keys())} \n'))
         account = self.accountsLedger[account_number]
 
         amount = int(input('Amount to deposit: '))  
         return account.add_money(amount)
 
     def withdraw(self):
-        account_number = int(input(f'Pick an account number from {list(self.accountsLedger.keys())}: '))
+        account_number = int(input(f'Pick an account number to withdraw from: {list(self.accountsLedger.keys())} \n'))
         account = self.accountsLedger[account_number]
 
         amount = int(input('Amount to withdraw: '))  
         return account.minus_money(amount)
 
     def close(self):
-        acc_to_close = int(input(f"Pick an account number to close, from {list(self.accountsLedger.keys())}: "))
-        del self.accountsLedger[acc_to_close]
+        acc_to_close = int(input(f"Pick an account number to close: {list(self.accountsLedger.keys())} \n"))
+        del self.accountsLedger[acc_to_close] # removes acc from dict{} 
 
         return self.accountsLedger
 

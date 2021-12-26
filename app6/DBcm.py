@@ -12,6 +12,5 @@ class UseDatabase:
 
     def __exit__(self, exc_type, exc_value, exc_trace):
         self.conn.commit()
-        self.cur.close()    
         self.conn.close()        
 

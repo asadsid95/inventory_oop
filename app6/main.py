@@ -14,7 +14,8 @@ from bank import Bank
 def main():
     bank1 = Bank()
     print(bank1.create())
-    print(bank1.deposit())
+    # print(bank1.deposit())
+    print(bank1.withdraw())
     # print(bank1.close())
 
 if __name__=='__main__':

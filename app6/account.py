@@ -12,21 +12,21 @@ class Account:
 
         self.name = name
         self.amount = int(amount)
-        self.pin = int(pin)
+        self.pin = pin
         self.accTransactionsDict = {} # add transaction history in account
         self.counter = 0
 
         with UseDatabase(Account.config_db) as self.cursor:
-            create_table = '''CREATE TABLE IF NOT EXISTS account  (
+            create_account_table = '''CREATE TABLE IF NOT EXISTS account(
                 name text,
                 amount real,
                 pin integer
-            )
-            '''
+            ) '''
+            
             add_account_db = f'''
                 INSERT INTO account (name, amount, pin) VALUES ('{self.name}', {self.amount}, {self.pin}) 
             '''
-            self.cursor.execute(create_table)
+            self.cursor.execute(create_account_table)
             self.cursor.execute(add_account_db)
 
     def __repr__(self):
@@ -52,6 +52,14 @@ class Account:
         
         if self.amount > 0:
             self.amount -= amount
+
+            with UseDatabase(Account.config_db) as self.cursor:
+                amount_db = f'''UPDATE account
+                    SET amount = {self.amount}
+                    where name = '{self.name}' 
+                '''
+                self.cursor.execute(amount_db)
+
             self.add_to_transactionHistory()
             return self.amount
         else:
